@@ -7,7 +7,7 @@ ail = ARGUMENTS.get('ail')
 dependencies = [boost, ail]
 
 if len(filter(lambda x: x == None, dependencies)) > 0:
-	print 'This executable requires boost (www.boost.org) and ail (ail.googlecode.com) so you will have to specify the paths in the scons arguments:'
+	print 'This executable requires boost (http://www.boost.org/) and ail (http://repo.or.cz/w/ail.git) so you will have to specify the paths in the scons arguments:'
 	print 'scons boost=<boost directory> ail=<ail directory>'
 	sys.exit(1)
 
