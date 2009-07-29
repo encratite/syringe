@@ -23,9 +23,9 @@ bool perform_injection(std::string const & executable_path, std::string const & 
 	STARTUPINFO startup_info = clear_startup_info();
 	PROCESS_INFORMATION process_information;
 
-	std::string command_line;
+	std::string command_line = "\"" + executable_path + "\"";
 	BOOST_FOREACH(std::string const & argument, arguments)
-		command_line += " " + argument;
+		command_line += " \"" + argument + "\"";
 
 	BOOL create_process_success = CreateProcess(executable_path.c_str(), const_cast<LPSTR>(command_line.c_str()), 0, 0, 0, CREATE_SUSPENDED, 0, working_directory.c_str(), &startup_info, &process_information);
 	if(create_process_success == 0)
@@ -111,6 +111,10 @@ int main(int argc, char ** argv)
 	string_vector arguments;
 	for(int i = 4; i < argc; i++)
 		arguments.push_back(argv[i]);
+
+	std::cout << "Path to executable: " << executable_path << std::endl;
+	std::cout << "Working directory: " << working_directory << std::endl;
+	std::cout << "Path to the module to inject: " << module_path << std::endl;
 
 	if(!perform_injection(executable_path, working_directory, module_path, arguments))
 		return 1;
