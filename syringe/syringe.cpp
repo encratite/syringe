@@ -97,6 +97,10 @@ void print_usage(char ** argv)
 
 int main(int argc, char ** argv)
 {
+	std::cout << "Arguments:" << std::endl;
+	for(int i = 0; i < argc; i++)
+		std::cout << i << ": \"" << argv[i] << "\"" << std::endl;
+
 	if(argc < 4)
 	{
 		print_usage(argv);
